@@ -43,5 +43,30 @@ public class VeterinarioTest {
 
         driver.close();
     }
-    
+    @Test
+    public void consultarVeterinario() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://localhost:8080/home");
+
+
+        WebElement consult = driver.findElement(By.xpath("/html/body/div[2]/a[2]/button"));
+        consult.click();
+
+        WebElement name = driver.findElement(By.xpath("//*[@id=\"nome\"]"));
+        name.sendKeys("Samuel Lucas");
+        WebElement consultar = driver.findElement(By.xpath("/html/body/div[2]/form/div[2]/button"));
+        consultar.click();
+
+        WebElement customerSave = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[1]"));
+        assertEquals(customerSave.getText(), "Samuel Lucas");
+        WebElement specialitySave = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[2]"));
+        assertEquals(specialitySave.getText(), "cirurgiao");
+        WebElement emailSave = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[3]"));
+        assertEquals(emailSave.getText(), "samuel@gmail.com");
+        WebElement salario = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[4]"));
+        assertEquals(salario.getText(), "R$4500.00");
+
+        driver.close();
+    }
 }
