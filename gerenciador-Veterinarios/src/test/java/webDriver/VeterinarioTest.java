@@ -69,4 +69,17 @@ public class VeterinarioTest {
 
         driver.close();
     }
+
+    @Test
+    public void deleteVeterinarioPrimeiroCadastro() {
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://localhost:8080/home");
+
+
+        WebElement delete = driver.findElement(By.xpath("/html/body/div[2]/table/tbody/tr[2]/td[5]/a[2]"));
+        delete.click();
+
+        driver.close();
+    }
 }
